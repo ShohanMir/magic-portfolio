@@ -20,20 +20,21 @@ type Metadata = {
   link?: string;
 };
 
-import { notFound } from 'next/navigation';
+// import { notFound } from 'next/navigation';
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
-    notFound();
+    throw new Error(`Directory not found: ${dir}`);
   }
 
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 function readMDXFile(filePath: string) {
-    if (!fs.existsSync(filePath)) {
-        notFound();
-    }
+  if (!fs.existsSync(filePath)) {
+    // notFound();
+    throw new Error(`File not found: ${filePath}`);
+  }
 
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);

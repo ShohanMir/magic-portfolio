@@ -1,4 +1,4 @@
-const baseURL = "demo.magic-portfolio.com";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "demo.magic-portfolio.com";
 
 const routes = {
   "/": true,
